@@ -183,7 +183,6 @@ stockApi/
 O projeto utiliza o pacote `mysql2` para gerenciar a conexão com o banco de dados MySQL. Para configurar a conexão, crie o arquivo `.env` e o preencha com essas informações:
 
 ```javascript
-SECRETKEY = "{Segredo usado para criar TokenJWT}";
 DATABASEHOST = "{Seu IP / localhost}";
 DATABASEUSER = "{Seu usuário SQL}";
 DATABASEPASSWORD = "{Senha do seu usuário SQL}";
