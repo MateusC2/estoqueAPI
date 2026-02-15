@@ -190,37 +190,6 @@ DATABASEPASSWORD = "{Senha do seu usuário SQL}";
 DATABASENAME = "stock";
 ```
 
-## Configuração da Conexão com `nodemailer`
-
-O projeto utiliza o pacote `nodemailer` para envio de e-mails, no arquivo `.env` e o preencha com essas informações:
-
-- É necessário configurar uma Senha de Aplicativo (App Password).
-
-- Ative a Verificação em Duas Etapas na sua conta Google: Configurações de Segurança
-
-- Vá até [Senhas de App](https://myaccount.google.com/apppasswords)
-
-- Copie essa senha e adicione no .env (MAILPASSWORD)
-
-```javascript
-MAILUSERNAME= "{seu.email@gmail.com}"
-MAILPASSWORD= "{Sua Senha de Serviço de 16 Dígitos}"
-```
-
-## Configuração da Conexão com `Gemini`
-
-O projeto utiliza o pacote `Gemini` para gerar dados, no arquivo `.env` e o preencha com essas informações:
-
-- É necessário gerar uma apiKey.
-
-- Vá até [AI Studio](https://aistudio.google.com/api-keys)
-
-- Copie essa senha e adicione no .env (GEMINIAPIKEY)
-
-```javascript
-GEMINIAPIKEY= "{Chave da Api da Google}"
-```
-
 ### Passos para Instalação
 
 **1.** **Clonar o Repositório**
@@ -277,15 +246,7 @@ GEMINIAPIKEY= "{Chave da Api da Google}"
     npm start
   ```
 
-## Documentação Completa dos Endpoints
-
-**🔗 Documentação da API (Swagger UI):** [Acessar Documentação](https://senai604estoque.eastus2.cloudapp.azure.com/api-docs/)
-
 ## Autores
 
-- [@fogazza](https://github.com/Fogazzaa)
-
-- [@guelin](https://github.com/m1guelzin)
-
-- [@yasmin](https://github.com/souzayasmin)
+- [@MateusC2](https://github.com/MateusC2)
 
