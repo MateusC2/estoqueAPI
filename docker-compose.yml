@@ -6,7 +6,7 @@ services:
     environment:
       # Usando a variável do .env para o banco de dados
       - MYSQL_ROOT_PASSWORD=${DATABASEPASSWORD}
-      - MYSQL_DATABASE=stock
+      - MYSQL_DATABASE=${DATABASENAME}
     ports:
       - "3307:3306"
     volumes:
@@ -30,7 +30,7 @@ services:
     environment:
       # Passando a variável do .env para a sua aplicação
       - MYSQL_ROOT_PASSWORD=${DATABASEPASSWORD}
-      - MYSQL_DATABASE=stock
+      - MYSQL_DATABASE=${DATABASENAME}
       - MYSQL_HOST=db
       - MYSQL_PORT=3306
     depends_on:
