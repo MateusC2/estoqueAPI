@@ -264,6 +264,71 @@ module.exports = class ItemController {
   }
 
   /**
+   * Atualizar marca e/ou descrição de um item
+   */
+static async updateItem(req, res) {
+    const { idItem } = req.params;
+    let { brand, description } = req.body;
+
+    if (isNaN(Number(idItem))) {
+      return handleResponse(res, 400, { success: false, error: "ID inválido." });
+    }
+
+    if (!brand && !description) {
+      return handleResponse(res, 400, { success: false, error: "Nada para atualizar." });
+    }
+
+    try {
+      // 1. Verificação se existe (Logs adicionados)
+      const checkQuery = "SELECT idItem FROM item WHERE idItem = ?";
+      const checkResult = await queryAsync(checkQuery, [idItem]);
+      
+      // Em mysql2, o resultado é um array de linhas. Se vazio, o item não existe.
+      // Se sua função queryAsync retornar apenas a linha ou o array, isso garante:
+      const itemExists = Array.isArray(checkResult) ? checkResult[0] : checkResult;
+
+      if (!itemExists) {
+        return handleResponse(res, 404, { success: false, error: "Item não encontrado." });
+      }
+
+      // 2. Construção dinâmica da Query
+      const parts = [];
+      const params = [];
+
+      if (brand) {
+        parts.push("brand = ?");
+        params.push(String(brand).trim());
+      }
+
+      if (description) {
+        parts.push("description = ?");
+        params.push(String(description).trim());
+      }
+
+      parts.push("lastUpdated = CURRENT_TIMESTAMP");
+      params.push(idItem); // O ID vai no final para o WHERE
+
+      const updateQuery = `UPDATE item SET ${parts.join(", ")} WHERE idItem = ?`;
+      
+      await queryAsync(updateQuery, params);
+
+      // 3. Retornar item atualizado
+      const selectQuery = "SELECT * FROM item WHERE idItem = ?";
+      const [updatedItem] = await queryAsync(selectQuery, [idItem]);
+
+      return handleResponse(res, 200, {
+        success: true,
+        message: "Item atualizado com sucesso.",
+        data: updatedItem
+      });
+
+    } catch (error) {
+      console.error("Erro CRÍTICO no update:", error);
+      return handleResponse(res, 500, { success: false, error: "Erro interno.", details: error.message });
+    }
+}
+
+  /**
    * Atualizar quantidade de um item
    */
   static async updateItemQuantity(req, res) {

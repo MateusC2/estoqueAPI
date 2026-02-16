@@ -23,6 +23,9 @@ router.post("/brands", itemController.createBrand);
 // Obter um item específico
 router.get("/items/:idItem", itemController.getItemById);//✅
 
+// Atualizar marca e descrição de um item
+router.put("/items/:idItem", itemController.updateItem);
+
 // Filtrar itens por brand e/ou description
 router.post("/items/filter", itemController.filterItems);//✅
 
